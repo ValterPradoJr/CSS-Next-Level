@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css?family=Oswald:400,700');
+
+:root {
+    --level-one: translateZ(3rem);
+    --level-two: translateZ(6rem);
+    --level-three: translateZ(9rem);
+
+    --fw-normal: 400;
+    --fw-bold: 700;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+body{
+    height: 100vh;
+    display: grid;
+    background: teal;
+    place-items: center;
+    font-family: 'Oswald', sans-serif;
+}
+
+.card {
+    width: 400px;
+    transform: translateY(-100%)
+}
+
+.card__content {
+    text-align: center;
+    position: relative;
+    background: pink;
+    padding: 5em;
+    transition: transform 3s;
+    transform-style: preserve-3d;
+}
+
+.card__front,
+.card__back {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    padding: 15em 3em;
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+    display: grid;
+    align-content: center;
+}
+
+.card__front {
+    background-color: #3f5a87;
+    display: grid;
+    background-image: url("paisagem.jpg");
+    background-size: cover;
+    background-blend-mode: overlay;
+    color: white;
+    /* transform: rotateY(90deg); */
+}
+
+.card:hover .card__content {
+    transform: rotateY(.5turn);
+}
+
+.card__back{
+    transform: rotateY(.5turn);
+    background-color: lightblue;
+}
+
+.card__title {
+    font-size: 3.5rem;
+    transform: var(--level-three);
+    order: 2;
+    text-transform: uppercase;
+}
+
+.card__subtitle {
+    transform: translateZ(3rem);
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-size: .75rem;
+    font-weight: var(--fw-bold);
+    opacity: .5rem;
+    
+}
+
+.card__body {
+    transform: var(--level-two);
+}
+
+
+.card__front::before {
+    content: '';
+    --spacer: 2em;
+    top: var(--spacer);
+    bottom: var(--spacer);
+    left: var(--spacer);
+    right: var(--spacer);
+    border: 3px solid currentColor;
+    position: absolute;
+    transform: var(--level-one);
+}
